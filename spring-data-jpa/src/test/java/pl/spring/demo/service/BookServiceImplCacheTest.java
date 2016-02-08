@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.spring.demo.dao.BookDao;
 import pl.spring.demo.exception.BookNotNullIdException;
 import pl.spring.demo.to.BookTo;
+import pl.spring.demo.common.Mapper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +29,8 @@ public class BookServiceImplCacheTest {
     private BookDao bookDao;
     @Autowired
     private CacheManager cacheManager;
+    @Autowired
+    private Mapper mapper;
 
     @Before
     public void setUp() {
@@ -37,7 +40,7 @@ public class BookServiceImplCacheTest {
     @Test
     public void testShouldFindAllBooksFirstFromDaoThenFromCache() {
         // when
-        Mockito.when(bookDao.findAll()).thenReturn(Arrays.asList(new BookTo(1L, "Title", "Author")));
+        Mockito.when(bookDao.findAll()).thenReturn(Arrays.asList(mapper.toToEntity(new BookTo(1L, "Title", "Author"))));
 
         List<BookTo> allBooks = bookService.findAllBooks();
         assertEquals(1, allBooks.size());

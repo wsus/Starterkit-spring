@@ -1,9 +1,11 @@
 package pl.spring.demo.common;
 
 import pl.spring.demo.to.IdAware;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+@Component
 public class Sequence {
 
     public long nextValue(Collection<? extends IdAware> existingIds) {

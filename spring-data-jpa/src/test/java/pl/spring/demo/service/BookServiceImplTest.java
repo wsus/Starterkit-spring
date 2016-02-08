@@ -40,15 +40,29 @@ public class BookServiceImplTest {
     }
 
     @Test
-    @Ignore
     public void testShouldFindAllBooksByTitle() {
         // given
-        final String title = "Opium w rosole";
+        final String title = "oPiUm w";
         // when
         List<BookTo> booksByTitle = bookService.findBooksByTitle(title);
         // then
         assertNotNull(booksByTitle);
         assertFalse(booksByTitle.isEmpty());
+    }
+    
+    @Test
+    public void testShouldFindAllBooksByAuthor() {
+        // given
+        final String author1 = "aLekSAnd";
+        final String author2 = "aLekSAnder fRE";
+        final String author3 = "fREd";
+        // when
+        List<BookTo> books = bookService.findBooksByAuthor(author1);
+        books.addAll(bookService.findBooksByAuthor(author2));
+        books.addAll(bookService.findBooksByAuthor(author3));
+        // then
+        assertNotNull(books);
+        assertEquals(3, books.size());
     }
 
     @Test(expected = BookNotNullIdException.class)
