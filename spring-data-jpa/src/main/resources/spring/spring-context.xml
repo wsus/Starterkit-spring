@@ -21,15 +21,6 @@
 
     <util:properties id="applicationProperties" location="classpath:config/application.properties"/>
 
-    <!-- <bean id="bookService" class="pl.spring.demo.service.impl.BookServiceImpl">
-        <property name="bookDao" ref="bookDao"/>
-    </bean>-->
-
-    <!--<bean id="sequence" class="pl.spring.demo.common.Sequence"/>-->
-
-    <!-- AOP -->
-<!--     <bean id="bookDaoAdvisor" class="pl.spring.demo.aop.BookDaoAdvisor"/> -->
-
     <bean id="bookDao" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target">
             <bean class="pl.spring.demo.dao.impl.BookDaoImpl">

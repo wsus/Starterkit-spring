@@ -23,12 +23,11 @@ public class Mapper {
 				id++;
 			}
 		}
-		//System.out.println("Id of the converted book: " + bookIn.getId());
 		return new BookEntity(bookIn.getId(), bookIn.getTitle(), authors);
 	}
 	
 	public BookTo entityToTo(BookEntity bookIn) {
-		StringBuilder authors = null; //Is it okay to pass null?
+		StringBuilder authors = null;
 		if (bookIn.getAuthors() != null) {
 			authors = new StringBuilder();
 			List<AuthorTo> authorsOld = bookIn.getAuthors();
